@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8" />
+    <meta content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="360-fullscreen" content="true" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="full-screen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="http-equiv=X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
+    <link href="http://img.17getfun.com/iconShare/favicon2.ico" rel="icon" type="image/x-icon"/>
+    <link rel="apple-touch-icon" href="//static1.mtime.cn/favicon.ico" />
+    <title>盖饭娱乐_gif图_gif动图</title>
+    <link rel="stylesheet" href="css/zhuanlan.css"/>
+    <script src="build/client/jquery-3.0.0.min.js"></script>
+</head>
+<body>
+<div id="zhuanlan">
+    <header>
+        <nav></nav>
+        <div class="nav">
+            <div class="navcontent">
+                <img src="http://static.17getfun.com/2017s3/image/publish/index2/logo.png" alt="" title="盖饭GetFun">
+                <ul class="navtext">
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="contenttext">
+            <div class="textleft">
+                <div class="contenttextleft">
+
+                </div>
+            </div>
+            <div class="contenttextright">
+                <div class="zuihost">
+                    <strong><i></i>最热门</strong>
+                    <ul class="zuihostcontent clearfix">
+                        <li v-for="i in list.hotContents">
+                            <a href="javascript:;" :title="i.content.title">
+                                <img :src="i.content.image" :alt="i.content.title">
+                                <strong>{{i.content.title}}</strong>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="zuihosttag">
+                    <strong class="clearfix"><i></i>热门标签<a href="javascript:;">更多</a></strong>
+                    <div class="zuihosttaglist">
+                        <a v-for="i in list.hotTag">{{i.name}}</a>
+                    </div>
+                </div>
+                <div class="Hottopic">
+                    <strong class="clearfix"><i></i>热门专题</strong>
+                    <ul class="Hottopiclist">
+                        <li v-for="i in list.hotTopics">
+                            <a :href="i.protocol" class="clearfix">
+                                <img :src="i.imgUrl" alt="i.title">
+                                <span>{{i.title}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    $.ajax({
+        url:"http://localhost:5000/data1",
+        async:true,
+        dataType:"json",
+        success:function(res){
+           console.log(res.dataList2)
+            var navtext="";
+            for(var i =0;i<res.dataList2.length;i++){
+                navtext+="<li><a href='javascript:;'>"+res.dataList2[i].channel.name+"</a></li>"
+            }
+           $(".navtext").html(navtext);
+        },
+        error:function(){
+            alert("数据请求失败")
+        }
+    })
+    $.ajax({
+        url:"http://localhost:5000/data",
+        async:true,
+        dataType:"json",
+        success:function(res){
+            console.log(res)
+//            var zhuantext="";
+//            for(var i= 0;i<res.){
+//
+//            }
+        }
+    })
+
+</script>
+</html>
